@@ -1,8 +1,9 @@
 # Python
 from typing import List
+import json
 
 # FastAPI
-from fastapi import status, APIRouter
+from fastapi import Body, status, APIRouter
 
 #Models
 from models import user
@@ -13,8 +14,8 @@ router = APIRouter()
 ## Users
 
 ### Sign Up
-@router.post(path="/sign-up", response_model=user.UserRegister, status_code=status.HTTP_201_CREATED, summary="Register a User", tags=['Users'])
-def sign_up():
+@router.post(path="/sign-up", response_model=user.User, status_code=status.HTTP_201_CREATED, summary="Register a User", tags=['Users'])
+def sign_up(user: user.UserRegister = Body()):
     """
     **SIGN UP**
 
@@ -36,7 +37,15 @@ def sign_up():
         - last_name: str
         - birth_date: date str
     """
-    pass
+    with open("users.json", "r+", encoding="utf-8") as file:
+        results = json.loads(file.read())
+        user_dict = user.dict()
+        user_dict["user_id"] = str(user_dict['user_id'])
+        user_dict["birth_date"] = str(user_dict["birth_date"])
+        results.append(user_dict)
+        file.seek(0) # top fo the file
+        file.write(json.dumps(results))
+        return user
 
 ### Login
 @router.post(path="/login", response_model=user.User, status_code=status.HTTP_200_OK, summary="Login a User", tags=['Users'])
