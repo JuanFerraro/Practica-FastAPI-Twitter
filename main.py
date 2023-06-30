@@ -5,7 +5,7 @@ from typing import List
 from fastapi import FastAPI, status
 
 # Models
-from .routers import tweets, users
+from routers import tweets, users
 
 # Initializate app
 app = FastAPI()

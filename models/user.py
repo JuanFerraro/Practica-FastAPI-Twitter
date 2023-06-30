@@ -18,3 +18,6 @@ class User(UserBase):
     first_name: str = Field(min_length=1, max_length=30)
     last_name: str = Field(min_length=1, max_length=30)
     birth_date: Optional[date] = Field(None)
+
+class UserRegister(User):
+    password: str = Field(min_length=8, max_length=24)

@@ -5,7 +5,7 @@ from typing import List
 from fastapi import status, APIRouter
 
 #Models
-from ..models import user
+from models import user
 
 # Initializations
 router = APIRouter()
@@ -13,8 +13,29 @@ router = APIRouter()
 ## Users
 
 ### Sign Up
-@router.post(path="/sign-up", response_model=user.User, status_code=status.HTTP_201_CREATED, summary="Register a User", tags=['Users'])
+@router.post(path="/sign-up", response_model=user.UserRegister, status_code=status.HTTP_201_CREATED, summary="Register a User", tags=['Users'])
 def sign_up():
+    """
+    **SIGN UP**
+
+    *This path operations register a user in the aplication*
+
+    *Args:* 
+    
+    - Request Body Parameter:
+
+        - user: UserRegister
+
+    *Returns:*
+
+    - A JSON with the basic user's information
+         
+        - user_id: UUID
+        - email: EmalStr
+        - first_name: str
+        - last_name: str
+        - birth_date: date str
+    """
     pass
 
 ### Login

@@ -5,7 +5,7 @@ from typing import List
 from fastapi import status, APIRouter
 
 #Models
-from ..models import tweet
+from models import tweet
 
 # Initializations
 router = APIRouter()
