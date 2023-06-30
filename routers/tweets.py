@@ -16,7 +16,29 @@ router = APIRouter()
 ### Show all Tweets
 @router.get(path="/", response_model=List[tweet.Tweet], status_code=status.HTTP_200_OK, summary="Show all tweets", tags=['Tweets'])
 def home():
-    return {"Twitter API": "Working"}
+    """
+    **SHOW ALL TWEETS**
+
+    *This path operation shows all TWEETS in the app*
+
+    *Args:* 
+
+        -
+
+    *Returns:*
+
+    - JSON list with all TWEETS in the app, with the following keys:
+
+        - tweet_id: UUID
+        - content: str
+        - create_at: datetime
+        - update_at: Optional datetime
+        - by: User
+        
+    """
+    with open("tweets.json", "r", encoding="utf-8") as file:
+        results = json.loads(file.read())
+        return results
 
 ### Post a tweet
 @router.post(path="/post", response_model=tweet.Tweet, status_code=status.HTTP_201_CREATED, summary="Post a Tweet", tags=['Tweets'])
