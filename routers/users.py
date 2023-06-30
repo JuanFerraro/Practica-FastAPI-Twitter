@@ -55,7 +55,28 @@ def login():
 ### Show all Users
 @router.get(path="/users", response_model=List[user.User], status_code=status.HTTP_200_OK, summary="Show all Users", tags=['Users'])
 def show_users():
-    pass
+    """
+    **SHOW ALL USERS**
+
+    *This path operation shows all users in the app*
+
+    *Args:* 
+
+        -
+
+    *Returns:*
+
+    - JSON list with all users in the app, with the following keys:
+
+        - user_id: UUID
+        - email: EmalStr
+        - first_name: str
+        - last_name: str
+        - birth_date: date str
+    """
+    with open("users.json", "r", encoding="utf-8") as file:
+        results = json.loads(file.read())
+        return results
 
 ### Show User Datails
 @router.get(path="/users/{user_id}", response_model=user.User, status_code=status.HTTP_200_OK, summary="Show a User", tags=['Users'])
