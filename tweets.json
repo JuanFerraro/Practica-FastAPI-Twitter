@@ -27,15 +27,15 @@
     },
     {
         "tweet_id": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
-        "content": "The third tweet of this awesome app!",
-        "created_at": "2023-07-01 13:52:54.081529",
-        "update_at": "2023-07-01 18:56:30.387000+00:00",
+        "content": "A?",
+        "created_at": "2023-07-01 15:01:02.824516",
+        "update_at": "2023-07-01 20:05:27.471000+00:00",
         "by": {
             "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
             "email": "sebas@example.com",
             "first_name": "Sebas",
             "last_name": "Ferraro",
-            "birth_date": "1995-07-01"
+            "birth_date": "2023-07-01"
         }
     }
 ]

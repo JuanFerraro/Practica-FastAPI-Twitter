@@ -3,7 +3,8 @@ from typing import List
 import json
 
 # FastAPI
-from fastapi import Body, status, APIRouter
+from fastapi import Body, status, APIRouter, HTTPException, Path
+from fastapi.responses import JSONResponse
 
 #Models
 from models import tweet
@@ -86,10 +87,58 @@ def show_tweet():
 
 ### Delete a tweet
 @router.delete(path="/tweets/{tweet_id}/delete", response_model=tweet.Tweet, status_code=status.HTTP_200_OK, summary="Delete a Tweet", tags=['Tweets'])
-def delete_tweet():
-    pass
+def delete_tweet(tweet_id: str = Path()):
+    """**DELETE A TWEET**
+
+    *This function delete a TWEET from de aplication using the tweet_id*
+
+    Args:
+        tweet_id (str, optional): _This is the tweet id that is going to be deleted_. Defaults to Path().
+
+    Raises:
+        HTTPException: _404, this is the status code that show up if the tweet_id it's not found_
+
+    Returns:
+        _JSON_: _With the status code and the message OK_
+    """
+    tweets = read_file("tweets.json")
+    for tweet in tweets:
+        if tweet['user_id'] == tweet_id:
+            tweets.remove(tweet)
+            write_file(tweets, "tweets.json") 
+            return JSONResponse(status_code=200, content='Delete tweet succesfully')
+    raise HTTPException(status_code=404, detail='Tweet not found')
 
 ### Update a tweet
-@router.put(path="/tweets/{tweet_id}/update", response_model=tweet.Tweet, status_code=status.HTTP_200_OK, summary="Delete a Tweet", tags=['Tweets'])
-def update_tweet():
-    pass
+@router.put(path="/tweets/{tweet_id}/update", response_model=tweet.Tweet, status_code=status.HTTP_200_OK, summary="Update a Tweet", tags=['Tweets'])
+def update_tweet(tweet_id: str = Path(), update_tweet: tweet.Tweet = Body()):
+    """**UPDATE TWEET**
+
+    *This function update a tweet from de aplication using thetweetr_id*
+
+    Args:
+        tweet_id (str, optional): _This is the tweet id that is going to be update_. Defaults to Path().
+        
+    Raises:
+        HTTPException: _404, this is the status code that show up if the tweet_id it's not found_
+
+    Returns:
+        _JSON_: _With the status code and the message OK_
+            - tweet_id: UUID
+            - content: str
+            - create_at: datetime
+            - update_at: Optional datetime
+            - by: User
+    """ 
+    tweets = read_file("tweets.json")
+    update_tweet = update_tweet.dict()
+    for tweet in tweets:
+        if tweet["tweet_id"] == tweet_id:
+            tweet['content'] = update_tweet['content']
+            tweet["created_at"] = str(update_tweet["created_at"])
+            tweet["update_at"] = str(update_tweet["update_at"])
+            tweet["by"]["user_id"] = str(update_tweet["by"]["user_id"]) 
+            tweet["by"]["birth_date"] = str(update_tweet["by"]["birth_date"]) 
+            write_file(tweets, "tweets.json") 
+            return JSONResponse(status_code=200, content='Update tweet succesfully')
+    raise HTTPException(status_code=404, detail='Tweet not found')
