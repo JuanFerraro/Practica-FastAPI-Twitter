@@ -1,1 +1,41 @@
-[{"tweet_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6", "content": "El primer tweet de twitter2.0", "created_at": "2023-06-30 15:22:33.450286", "update_at": "2023-06-30 20:23:01.203000+00:00", "by": {"user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6", "email": "juan@example.com", "first_name": "Juan", "last_name": "Barrios", "birth_date": "2023-06-30"}}, {"tweet_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6", "content": "Second tweet de twitter2.0", "created_at": "2023-06-30 15:22:33.450286", "update_at": "2023-06-30 20:23:01.203000+00:00", "by": {"user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6", "email": "sebastian@example.com", "first_name": "Sebastian", "last_name": "Ferraro", "birth_date": "2023-06-30"}}]
+[
+    {
+        "tweet_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "content": "El primer tweet de twitter2.0",
+        "created_at": "2023-06-30 15:22:33.450286",
+        "update_at": "2023-06-30 20:23:01.203000+00:00",
+        "by": {
+            "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "email": "juan@example.com",
+            "first_name": "Juan",
+            "last_name": "Barrios",
+            "birth_date": "2023-06-30"
+        }
+    },
+    {
+        "tweet_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "content": "Second tweet de twitter2.0",
+        "created_at": "2023-06-30 15:22:33.450286",
+        "update_at": "2023-06-30 20:23:01.203000+00:00",
+        "by": {
+            "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "email": "sebastian@example.com",
+            "first_name": "Sebastian",
+            "last_name": "Ferraro",
+            "birth_date": "2023-06-30"
+        }
+    },
+    {
+        "tweet_id": "3fa85f64-5717-4562-b3fc-2c963f66afa7",
+        "content": "The third tweet of this awesome app!",
+        "created_at": "2023-07-01 13:52:54.081529",
+        "update_at": "2023-07-01 18:56:30.387000+00:00",
+        "by": {
+            "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+            "email": "sebas@example.com",
+            "first_name": "Sebas",
+            "last_name": "Ferraro",
+            "birth_date": "1995-07-01"
+        }
+    }
+]

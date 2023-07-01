@@ -8,6 +8,9 @@ from fastapi import Body, status, APIRouter
 #Models
 from models import tweet
 
+#Utils
+from .utils import read_file, write_file, find_in_file
+
 # Initializations
 router = APIRouter()
 
@@ -43,8 +46,7 @@ def home():
 ### Post a tweet
 @router.post(path="/post", response_model=tweet.Tweet, status_code=status.HTTP_201_CREATED, summary="Post a Tweet", tags=['Tweets'])
 def post_tweet(tweet: tweet.Tweet = Body()):
-    """
-    **POST A TWEET**
+    """**POST A TWEET**
 
     *This path operations post a tweet in the app*
 
@@ -64,18 +66,18 @@ def post_tweet(tweet: tweet.Tweet = Body()):
         - update_at: Optional datetime
         - by: User
     """
-    with open("tweets.json", "r+", encoding="utf-8") as file:
-        results = json.loads(file.read())
-        tweet_dict = tweet.dict()
-        tweet_dict["tweet_id"] = str(tweet_dict["tweet_id"])
-        tweet_dict["created_at"] = str(tweet_dict["created_at"])
-        tweet_dict["update_at"] = str(tweet_dict["update_at"])
-        tweet_dict["by"]["user_id"] = str(tweet_dict["by"]["user_id"]) 
-        tweet_dict["by"]["birth_date"] = str(tweet_dict["by"]["birth_date"]) 
-        results.append(tweet_dict)
-        file.seek(0) # top fo the file
-        file.write(json.dumps(results))
-        return tweet
+    tweets = read_file("tweets.json") # Users List
+    tweet_dict = tweet.dict() # user info to a dict
+    tweet_dict = tweet.dict()
+    tweet_dict["tweet_id"] = str(tweet_dict["tweet_id"])
+    tweet_dict["created_at"] = str(tweet_dict["created_at"])
+    tweet_dict["update_at"] = str(tweet_dict["update_at"])
+    tweet_dict["by"]["user_id"] = str(tweet_dict["by"]["user_id"]) 
+    tweet_dict["by"]["birth_date"] = str(tweet_dict["by"]["birth_date"]) 
+    tweets.append(tweet_dict)
+    write_file(tweets, "tweets.json")
+
+    return tweet
 
 ### Show a tweet
 @router.get(path="/tweets/{tweet_id}", response_model=tweet.Tweet, status_code=status.HTTP_200_OK, summary="Show a Tweet", tags=['Tweets'])
