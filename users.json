@@ -1,18 +1,18 @@
 [
-  {
-    "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "email": "juan@gmail.com",
-    "first_name": "Juan",
-    "last_name": "Barrios",
-    "birth_date": "1997-04-07",
-    "password": "juan12345"
-  },
-  {
-    "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    "email": "sebastian@example.com",
-    "first_name": "Sebastian",
-    "last_name": "Ferraro",
-    "birth_date": "1997-04-07",
-    "password": "holasoyjuan"
-  }
+    {
+        "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "email": "sebas@example.com",
+        "first_name": "Sebas",
+        "last_name": "Ferraro",
+        "birth_date": "1995-07-01",
+        "password": "contrase\u00f1a"
+    },
+    {
+        "user_id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+        "email": "sara@example.com",
+        "first_name": "Sara",
+        "last_name": "Guzman",
+        "birth_date": "1999-07-01",
+        "password": "mypassword"
+    }
 ]
